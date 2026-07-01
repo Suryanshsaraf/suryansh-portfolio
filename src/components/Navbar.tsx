@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
           </MagneticButton>
           <MagneticButton>
             <a
-              href="https://www.linkedin.com/in/suryansh-saraf/"
+              href="https://www.linkedin.com/in/suryansh-saraf-5aa011293/"
               target="_blank"
               rel="noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-slate-300 border border-white/10 hover:bg-white/10 hover:text-cyan-400 transition-all"
