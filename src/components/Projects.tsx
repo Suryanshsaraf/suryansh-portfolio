@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AreaChart, Brain, Cpu, ExternalLink, Layers, ShieldCheck } from 'lucide-react';
+import { AreaChart, Brain, Cpu, ExternalLink, GitFork, Layers, ShieldCheck, Star } from 'lucide-react';
+import MagneticButton from './MagneticButton';
 
 interface Project {
   title: string;
@@ -32,6 +33,9 @@ const GithubIcon: React.FC<{ className?: string }> = ({ className }) => (
 
 const Projects: React.FC = () => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+  const [showGitHub, setShowGitHub] = useState(false);
+  const [githubRepos, setGithubRepos] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const projectsData: Project[] = [
     {
@@ -100,6 +104,34 @@ const Projects: React.FC = () => {
     },
   ];
 
+  const fetchGitHubRepos = () => {
+    if (githubRepos.length > 0) {
+      setShowGitHub(!showGitHub);
+      return;
+    }
+    setLoading(true);
+    fetch('https://api.github.com/users/Suryanshsaraf/repos?sort=updated&per_page=30')
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          // Filter out forks, profile README, and the current site itself
+          const filtered = data.filter(
+            (repo: any) =>
+              !repo.fork &&
+              repo.name !== 'Suryanshsaraf' &&
+              repo.name.toLowerCase() !== 'suryansh-portfolio'
+          );
+          setGithubRepos(filtered);
+          setShowGitHub(true);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  };
+
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -107,6 +139,23 @@ const Projects: React.FC = () => {
       y: 0,
       transition: { type: 'spring' as const, stiffness: 90, damping: 14 },
     },
+  };
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.05 }
+    }
+  };
+
+  const githubCardVariants = {
+    hidden: { opacity: 0, scale: 0.95, y: 20 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { type: 'spring' as const, stiffness: 100, damping: 15 }
+    }
   };
 
   return (
@@ -223,6 +272,86 @@ const Projects: React.FC = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        {/* More Projects Section */}
+        <div className="mt-16 flex flex-col items-center">
+          <MagneticButton>
+            <button
+              onClick={fetchGitHubRepos}
+              disabled={loading}
+              className="flex items-center space-x-3 rounded-full border border-white/10 hover:border-cyan-500/40 bg-white/5 hover:bg-cyan-950/20 px-8 py-4 font-display font-medium text-slate-200 hover:text-cyan-300 transition-all cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
+              data-cursor-text={showGitHub ? 'LESS' : 'MORE'}
+            >
+              <GithubIcon className="h-4 w-4" />
+              <span>{loading ? 'Fetching Projects...' : showGitHub ? 'Show Featured Only' : 'Explore More GitHub Repos'}</span>
+            </button>
+          </MagneticButton>
+
+          {/* Github Repos Grid */}
+          <AnimatePresence>
+            {showGitHub && (
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-12 w-full"
+              >
+                {githubRepos.map((repo) => (
+                  <motion.a
+                    key={repo.id}
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    variants={githubCardVariants}
+                    className="rounded-xl glassmorphic border border-white/5 p-6 hover:border-cyan-500/30 transition-all duration-300 flex flex-col justify-between group interactive-card text-left relative overflow-hidden"
+                    data-cursor-text="OPEN"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-indigo-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    
+                    <div className="space-y-4">
+                      {/* Title & Star */}
+                      <div className="flex justify-between items-start">
+                        <h4 className="font-display font-bold text-white text-md tracking-tight group-hover:text-cyan-300 transition-colors">
+                          {repo.name}
+                        </h4>
+                        <div className="flex items-center space-x-1 text-slate-500 text-xs font-mono">
+                          <Star className="h-3.5 w-3.5 text-yellow-500/80 fill-yellow-500/10" />
+                          <span>{repo.stargazers_count}</span>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                        {repo.description || 'No description provided.'}
+                      </p>
+                    </div>
+
+                    {/* Footer stats */}
+                    <div className="flex justify-between items-center mt-6 pt-4 border-t border-white/5 text-[10px] font-mono text-slate-500">
+                      <span className="flex items-center space-x-1">
+                        <Layers className="h-3 w-3" />
+                        <span>{repo.language || 'Documentation'}</span>
+                      </span>
+
+                      {repo.forks_count > 0 && (
+                        <span className="flex items-center space-x-1">
+                          <GitFork className="h-3 w-3" />
+                          <span>{repo.forks_count}</span>
+                        </span>
+                      )}
+
+                      <span className="flex items-center space-x-1 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>Code</span>
+                        <ExternalLink className="h-2.5 w-2.5" />
+                      </span>
+                    </div>
+                  </motion.a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>
