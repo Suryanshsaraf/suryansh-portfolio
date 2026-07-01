@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <span className="text-[10px] font-mono text-slate-500 block uppercase tracking-wider">Location</span>
-                    <span className="text-sm font-semibold">Navi Mumbai, Maharashtra, IN</span>
+                    <span className="text-sm font-semibold">Thane, Maharashtra, IN</span>
                   </div>
                 </div>
               </div>

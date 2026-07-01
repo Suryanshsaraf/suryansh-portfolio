@@ -67,7 +67,7 @@ const About: React.FC = () => {
                   </span>
                   <span className="flex items-center space-x-1.5 bg-white/5 rounded-full px-3 py-1">
                     <MapPin className="h-3.5 w-3.5 text-cyan-400" />
-                    <span>Navi Mumbai, India</span>
+                    <span>Thane, India</span>
                   </span>
                 </div>
               </div>
