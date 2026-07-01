@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, BookOpen, Calendar, MapPin, Users } from 'lucide-react';
+import { Award, BookOpen, Briefcase, Calendar, MapPin, Users } from 'lucide-react';
 
 const About: React.FC = () => {
   const cardVariants = {
@@ -28,7 +28,7 @@ const About: React.FC = () => {
             / 01. Origin Story
           </span>
           <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Academics &amp; Leadership
+            Origin &amp; Experience
           </h2>
           <div className="mt-2 h-1 w-20 rounded bg-cyan-500/50" />
         </div>
@@ -97,7 +97,7 @@ const About: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Leadership & Activities Card */}
+          {/* Experience & Leadership Card */}
           <motion.div
             variants={cardVariants}
             initial="hidden"
@@ -108,34 +108,57 @@ const About: React.FC = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-indigo-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="relative z-10 space-y-6">
-              <div className="flex items-center space-x-3 text-indigo-400">
-                <Users className="h-6 w-6" />
-                <h3 className="font-display text-xl font-bold text-white">Leadership Roles</h3>
-              </div>
-              
-              <div className="space-y-6">
+              {/* Internships Section */}
+              <div>
+                <div className="flex items-center space-x-3 text-cyan-400 mb-4">
+                  <Briefcase className="h-6 w-6" />
+                  <h3 className="font-display text-xl font-bold text-white">Internships</h3>
+                </div>
+
                 <div className="relative pl-6 border-l-2 border-cyan-500/30">
                   <div className="absolute left-[-5px] top-1.5 h-2 w-2 rounded-full bg-cyan-400" />
                   <span className="text-xs text-slate-500 font-mono flex items-center space-x-1">
-                    <Calendar className="h-3 w-3 mr-1" /> July 2025 - March 2026
+                    <Calendar className="h-3 w-3 mr-1" /> May 2025 - June 2025
                   </span>
-                  <h4 className="text-md font-semibold text-slate-200 mt-1">Infinix AI&amp;ML Club Co-Head</h4>
-                  <p className="text-xs text-cyan-400 font-mono">STME, NMIMS Navi Mumbai</p>
-                  <p className="text-slate-400 text-xs mt-1.5">
-                    Led AI/ML technical workshops, community engagement, and hosted industry professionals from IBM, Browser Stack, and Xenvolt.AI.
+                  <h4 className="text-md font-semibold text-slate-200 mt-1">Research Intern</h4>
+                  <p className="text-xs text-cyan-400 font-mono">Veermata Jijabai Institute of Technology (VJTI) Matunga</p>
+                  <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                    Worked on the HSRP project to detect and recognize vehicle license plates from real-time traffic footage. Trained and optimized computer vision models using YOLOv8, RoboFlow, and OpenCV.
                   </p>
                 </div>
+              </div>
 
-                <div className="relative pl-6 border-l-2 border-indigo-500/30">
-                  <div className="absolute left-[-5px] top-1.5 h-2 w-2 rounded-full bg-indigo-400" />
-                  <span className="text-xs text-slate-500 font-mono flex items-center space-x-1">
-                    <Calendar className="h-3 w-3 mr-1" /> Aug 2023 - March 2024
-                  </span>
-                  <h4 className="text-md font-semibold text-slate-200 mt-1">Microsoft Student Learn Ambassador</h4>
-                  <p className="text-xs text-indigo-400 font-mono">NMIMS Navi Mumbai</p>
-                  <p className="text-slate-400 text-xs mt-1.5">
-                    Organized Ignite 6.0, the flagship Techfest, coordinating multi-session technical events.
-                  </p>
+              {/* Leadership Section */}
+              <div className="border-t border-white/5 pt-6">
+                <div className="flex items-center space-x-3 text-indigo-400 mb-4">
+                  <Users className="h-6 w-6" />
+                  <h3 className="font-display text-xl font-bold text-white">Leadership Roles</h3>
+                </div>
+                
+                <div className="space-y-6">
+                  <div className="relative pl-6 border-l-2 border-indigo-500/30">
+                    <div className="absolute left-[-5px] top-1.5 h-2 w-2 rounded-full bg-indigo-400" />
+                    <span className="text-xs text-slate-500 font-mono flex items-center space-x-1">
+                      <Calendar className="h-3 w-3 mr-1" /> July 2025 - March 2026
+                    </span>
+                    <h4 className="text-md font-semibold text-slate-200 mt-1">Infinix AI&amp;ML Club Co-Head</h4>
+                    <p className="text-xs text-indigo-400 font-mono">STME, NMIMS Navi Mumbai</p>
+                    <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                      Led AI/ML technical workshops, community engagement, and hosted industry professionals from IBM, Browser Stack, and Xenvolt.AI.
+                    </p>
+                  </div>
+
+                  <div className="relative pl-6 border-l-2 border-indigo-500/30">
+                    <div className="absolute left-[-5px] top-1.5 h-2 w-2 rounded-full bg-indigo-400" />
+                    <span className="text-xs text-slate-500 font-mono flex items-center space-x-1">
+                      <Calendar className="h-3 w-3 mr-1" /> Aug 2023 - March 2024
+                    </span>
+                    <h4 className="text-md font-semibold text-slate-200 mt-1">Microsoft Student Learn Ambassador</h4>
+                    <p className="text-xs text-indigo-400 font-mono">NMIMS Navi Mumbai</p>
+                    <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">
+                      Organized Ignite 6.0, the flagship Techfest, coordinating multi-session technical events.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
