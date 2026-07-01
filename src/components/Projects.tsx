@@ -31,6 +31,16 @@ const GithubIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
+// Whitelisted selective "hot" projects from GitHub to filter out scratch projects
+const HOT_REPOS_WHITELIST = [
+  'visionplay-ai',
+  'InsightFlow-BI',
+  'SmartBite-Android',
+  'spotify-top50-powerbi-dashboard',
+  'DEVOPS-APDD',
+  'Red-Traffic-Light-Violation-main',
+];
+
 const Projects: React.FC = () => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [showGitHub, setShowGitHub] = useState(false);
@@ -114,13 +124,18 @@ const Projects: React.FC = () => {
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
-          // Filter out forks, profile README, and the current site itself
-          const filtered = data.filter(
-            (repo: any) =>
-              !repo.fork &&
-              repo.name !== 'Suryanshsaraf' &&
-              repo.name.toLowerCase() !== 'suryansh-portfolio'
+          // Filter to ONLY include whitelisted "hot" repos
+          const filtered = data.filter((repo: any) =>
+            HOT_REPOS_WHITELIST.includes(repo.name)
           );
+          
+          // Sort whitelisted repos according to order in HOT_REPOS_WHITELIST
+          filtered.sort(
+            (a, b) =>
+              HOT_REPOS_WHITELIST.indexOf(a.name) -
+              HOT_REPOS_WHITELIST.indexOf(b.name)
+          );
+
           setGithubRepos(filtered);
           setShowGitHub(true);
         }
@@ -284,7 +299,7 @@ const Projects: React.FC = () => {
               data-cursor-text={showGitHub ? 'LESS' : 'MORE'}
             >
               <GithubIcon className="h-4 w-4" />
-              <span>{loading ? 'Fetching Projects...' : showGitHub ? 'Show Featured Only' : 'Explore More GitHub Repos'}</span>
+              <span>{loading ? 'Verifying Projects...' : showGitHub ? 'Show Featured Only' : 'Explore Selective GitHub Projects'}</span>
             </button>
           </MagneticButton>
 
