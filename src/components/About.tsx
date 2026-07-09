@@ -1,3 +1,4 @@
+/** About component details: Suryansh Saraf's Origin & Experience history */
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award, BookOpen, Briefcase, Calendar, MapPin, Users } from 'lucide-react';
