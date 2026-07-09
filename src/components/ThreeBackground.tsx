@@ -1,3 +1,4 @@
+/** ThreeBackground component: interactive 3D WebGL particle system */
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
