@@ -1,3 +1,4 @@
+/** Contact component: form and social details for user transmission */
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, Sparkles } from 'lucide-react';
