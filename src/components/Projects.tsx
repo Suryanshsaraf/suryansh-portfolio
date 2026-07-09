@@ -1,3 +1,4 @@
+/** Projects component: lists hot repos and custom detailed project cards */
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AreaChart, Brain, Cpu, ExternalLink, GitFork, Layers, ShieldCheck, Star } from 'lucide-react';
