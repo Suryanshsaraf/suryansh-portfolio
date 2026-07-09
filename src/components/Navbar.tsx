@@ -1,3 +1,4 @@
+/** Navbar component: custom navigation headers and social anchors */
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Mail } from 'lucide-react';
