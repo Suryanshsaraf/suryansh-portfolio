@@ -1,3 +1,4 @@
+/** Skills component: graphical list of tech stack metrics */
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Cpu, Database, Terminal } from 'lucide-react';
