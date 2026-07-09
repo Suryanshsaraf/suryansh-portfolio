@@ -1,3 +1,4 @@
+/** Hero component: dynamic visual welcome banner and catchphrase */
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Brain, Sparkles, Terminal } from 'lucide-react';
