@@ -9,7 +9,8 @@ Welcome to the official repository for my personal portfolio website. This space
 I am a B.Tech student specializing in **Artificial Intelligence & Data Science** at SVKM's NMIMS University (Navi Mumbai, Class of 2027). I focus on deep learning, real-time data pipelines, and building intelligent agents to solve real-world problems.
 
 * 📍 **Location:** Thane, India
-* ⚡ **Co-Head:** Infinix AI&ML Club (STME, NMIMS)
+* ⚡ **Co-Head:** Ex-Infinix AI&ML Club (STME, NMIMS)
+* 👨‍💻 **Summer Intern** VJTI Matunga, Mumbai!
 * 🎓 **Certifications:** Google Cloud & AWS Academy Graduate
 
 ---
